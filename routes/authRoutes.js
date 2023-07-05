@@ -1,5 +1,6 @@
 import express from "express";
-import { loginController, registerController } from "../controllers/authController.js";
+import { loginController, registerController, testController } from "../controllers/authController.js";
+import { requireSignIn } from "../middlewares/authMiddleware.js";
 // routers object
 const routers = express.Router();
 
@@ -22,6 +23,9 @@ routers.post('/register', registerController);
 //     "email":"test@mail.com",
 //     "password":"test@password"
 // }
-routers.post('/login',loginController);
+routers.post('/login', loginController);
+
+//Test routes
+routers.get('/test', requireSignIn, testController);
 
 export default routers;
