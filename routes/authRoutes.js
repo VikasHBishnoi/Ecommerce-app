@@ -1,6 +1,6 @@
 import express from "express";
 import { loginController, registerController, testController } from "../controllers/authController.js";
-import { requireSignIn } from "../middlewares/authMiddleware.js";
+import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 // routers object
 const routers = express.Router();
 
@@ -25,7 +25,7 @@ routers.post('/register', registerController);
 // }
 routers.post('/login', loginController);
 
-//Test routes
-routers.get('/test', requireSignIn, testController);
+//Test routes to test this just used token genrated in header and key as autherization in postman
+routers.get('/test', requireSignIn, isAdmin,testController);
 
 export default routers;

@@ -6,7 +6,7 @@ export const registerController = async (req, res) => {
     // console.log("Hello yes trying to register");
     try {
         console.log(req.body);
-        const { name, email, password, phone, address } = req.body;
+        const { name, email, password, phone, address, role } = req.body;
         // console.log(name);
         // Validation
         if (!name) {
@@ -38,7 +38,7 @@ export const registerController = async (req, res) => {
         // register user
         const hashedPassword = await hashPassword(password);
         // save
-        const user = await new userModel({ name, email, phone, address, password: hashedPassword }).save();
+        const user = await new userModel({ name, email, phone, address, password: hashedPassword, role }).save();
 
         res.status(201).send({
             success: true,
@@ -104,6 +104,6 @@ export const loginController = async (req, res) => {
 
 
 // Test Controller
-export const testController=(req,res)=>{
+export const testController = (req, res) => {
     res.send("protected routes");
 }
