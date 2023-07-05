@@ -28,4 +28,6 @@ routers.post('/login', loginController);
 //Test routes to test this just used token genrated in header and key as autherization in postman
 routers.get('/test', requireSignIn, isAdmin,testController);
 
+// Continue from 1:28:00
+// :-)
 export default routers;
