@@ -124,3 +124,16 @@ a:hover {
 .privacyBlock>h1, .privacyBlock>h3{
   color: rgb(250, 8, 41);
 }
+
+
+/* ========================================= */
+/* ================Register ================ */
+.register{
+  background-color: aqua;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 74vh;
+  margin: 1px;
+}
