@@ -1,59 +1,115 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400&display=swap");
+
 /* font-family: 'Poppins', sans-serif; */
 /* font-family: 'Playfair Display', serif; */
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
 
 /* Navbar */
-.navbar{
-    font-family: 'Poppins', sans-serif;;
-    font-size: 17px;
-    line-height: 26px;
-    text-transform: uppercase;
-    box-shadow: 0 8px 6px -6px gray;
-    --webkit-box-shadow:0 8px 6px -6px gray;
-    border-bottom: 1.5px solid gray !important;
+.navbar {
+  font-family: "Poppins", sans-serif;
+  font-size: 17px;
+  line-height: 26px;
+  text-transform: uppercase;
+  box-shadow: 0 8px 6px -6px gray;
+  --webkit-box-shadow: 0 8px 6px -6px gray;
+  border-bottom: 1.5px solid gray !important;
 }
 
-.nav-link{
-    font-weight: 300 !important;
-
-}
-.active{
-    border-bottom: 2px solid;
-}
-.navbar-brand{
-    font-weight: 700;
-    font-family: 'roboto',sans-serif;
-    letter-spacing: 3px;
-    border:0px !important;
-}
-.navbar-brand{
-    /* background-color: black; */
-    font-weight: 700;
-    font-family: 'roboto',sans-serif;
-    letter-spacing: 2px;
+.nav-link {
+  font-weight: 300 !important;
 }
 
+.nav-link:hover {
+  color: rgb(5, 62, 250) !important;
+}
+
+.active {
+  border-bottom: 2px solid;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-family: "roboto", sans-serif;
+  letter-spacing: 3px;
+  border: 0px !important;
+}
+
+.navbar-brand {
+  /* background-color: black; */
+  font-weight: 700;
+  font-family: "roboto", sans-serif;
+  letter-spacing: 2px;
+}
+
+/* ================================================================
+===========================Page Not Found==========================
+===================================================================*/
+.pnf {
+  display: flex;
+  min-height: 65vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.pnf-title {
+  font-size: 100px;
+  font-weight: 700;
+}
+
+.pnf-heading {
+  font-weight: normal;
+}
+
+.pnf-btn {
+  color: black;
+  border: 1px solid black;
+  text-decoration: none;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.pnf-btn:hover {
+  background-color: black;
+  color: white;
+}
 
 
 /* ================================================================
 ===========================Footer===============================
 ================================================================ */
-.footerLink{
-    margin: 0px 10px;
-    padding: 10px;
-    text-decoration: none !important;
-    letter-spacing: 2px;
-    color:white;
+.footerLink {
+  margin: 0px 10px;
+  padding: 10px;
+  text-decoration: none !important;
+  letter-spacing: 2px;
+  color: white;
 }
-a:hover{
-    color: rgb(5, 62, 250);
-    border-bottom: 2px solid rgb(5, 62, 250);
+
+a:hover {
+  color: rgb(5, 62, 250);
+  border-bottom: 2px solid rgb(5, 62, 250);
 }
 
 
+
+/* ========================================= */
+/* =========contact us ========= */
+.contactus {
+    margin: 0;
+    padding: 0;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#contact-title{
+    border-radius: 50px;
+    margin-left: 30px;
+    width: 25rem;
+}
+  
