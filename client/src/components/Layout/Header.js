@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
+import { BiSolidShoppingBag } from "react-icons/bi";
 const Header = () => {
   return (
     <>
@@ -18,8 +19,8 @@ const Header = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <Link to="/" className="navbar-brand">
-            {/* To add icon u can install react-icon */}
-              Eccomerce App
+              {/* To add icon u can install react-icon */}
+              <BiSolidShoppingBag /> ECOMMERCE APP
             </Link>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">

@@ -21,8 +21,8 @@
 
 .nav-link{
     font-weight: 300 !important;
-}
 
+}
 .active{
     border-bottom: 2px solid;
 }
@@ -30,4 +30,30 @@
     font-weight: 700;
     font-family: 'roboto',sans-serif;
     letter-spacing: 3px;
+    border:0px !important;
 }
+.navbar-brand{
+    /* background-color: black; */
+    font-weight: 700;
+    font-family: 'roboto',sans-serif;
+    letter-spacing: 2px;
+}
+
+
+
+/* ================================================================
+===========================Footer===============================
+================================================================ */
+.footerLink{
+    margin: 0px 10px;
+    padding: 10px;
+    text-decoration: none !important;
+    letter-spacing: 2px;
+    color:white;
+}
+a:hover{
+    color: rgb(5, 62, 250);
+    border-bottom: 2px solid rgb(5, 62, 250);
+}
+
+
