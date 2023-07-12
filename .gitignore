@@ -13,6 +13,7 @@
 /build
 
 # misc
+toUpdate.txt
 .DS_Store
 .env
 /client/.env
