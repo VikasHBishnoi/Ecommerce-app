@@ -112,4 +112,18 @@ a:hover {
     margin-left: 30px;
     width: 25rem;
 }
-  
+
+/* ========================================= */
+/* ================Policy ================== */
+.privacyBlock{
+  padding:10px 45px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: "roboto", sans-serif;
+}
+.privacyBlock>h1, .privacyBlock>h3{
+  color: rgb(250, 8, 41);
+}
+/* .pnf-title {
+} */
+
