@@ -7,7 +7,13 @@ const Layout = (props) => {
     <div>
       <Header />
       <main style={{ minHeight: "75vh" }}>
-        <Toaster />
+        <Toaster
+          toastOptions={{
+            success: {
+              duration: 2000,
+            },
+          }}
+        />
         {props.children}
       </main>
       <Footer />

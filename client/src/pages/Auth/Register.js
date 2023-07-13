@@ -22,8 +22,10 @@ export const Register = () => {
         { name, email, password, phone, address }
       );
       if (res && res.data.success) {
-        toast.success(res.data && res.data.message);
         navigate("/login");
+        setTimeout(() => {
+          toast.success(res.data.message);
+        }, 2000);
       } else {
         toast.error(res.data.message);
       }
