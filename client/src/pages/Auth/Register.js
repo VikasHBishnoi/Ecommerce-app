@@ -1,101 +1,122 @@
 import React, { useState } from "react";
 import Layout from "./../../components/Layout/Layout";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 export const Register = () => {
-  const [detail, setDetails] = useState({
-    name: "",
-    email: "",
-    password: "",
-    phone: "",
-    address: "",
-  });
-  function handleChanges(event) {
-    // console.log(event.target.value);
-    const changeElement = event.target.name;
-    const newValue = event.target.value;
-    setDetails({ ...detail, [changeElement]: newValue });
-  }
-  const handleSubmit=(event)=>{
+  //hooks
+  const [name, setName] = useState("");
+  const [email, setEamil] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const navigate = useNavigate();
+
+  // form Function
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(event.target);
-  }
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_API}/api/v1/auth/register`,
+        { name, email, password, phone, address }
+      );
+      if (res && res.data.success) {
+        toast.success(res.data && res.data.message);
+        navigate("/login");
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something Went Wrong with Registration");
+    }
+    // setName("");
+    // setEamil("");
+    // setPassword("");
+    // setPhone("");
+    // setAddress("");
+    // console.log(event.target);
+    // toast.success("Registered Success");
+  };
   return (
     <Layout>
-      <div className="register">
-        <h1>Register Page</h1>
+      <div className="form-container">
+        <h4 id="title">Register Page</h4>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="exampleInputName" className="form-label">
-              Name
-            </label>
             <input
-              onChange={handleChanges}
+              placeholder="name"
+              onChange={(event) => {
+                setName(event.target.value);
+              }}
               type="text"
               className="form-control"
               id="exampleInputName"
-              value={detail.name}
+              value={name}
               name="name"
               required
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="exampleInputEmail" className="form-label">
-              Email
-            </label>
             <input
-              onChange={handleChanges}
+              placeholder="Email"
+              onChange={(event) => {
+                setEamil(event.target.value);
+              }}
               type="email"
               className="form-control"
               id="exampleInputEmail"
-              value={detail.email}
+              value={email}
               name="email"
               required
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="exampleInputPassword1" className="form-label">
-              Password
-            </label>
             <input
-              onChange={handleChanges}
+              placeholder="Password"
+              onChange={(event) => {
+                setPassword(event.target.value);
+              }}
               type="password"
               className="form-control"
               id="exampleInputPassword1"
-              value={detail.password}
+              value={password}
               name="password"
+              autoComplete="on"
               required
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="exampleInputPhone" className="form-label">
-              Phone
-            </label>
             <input
-              onChange={handleChanges}
+            placeholder="Phone"
+              onChange={(event) => {
+                setPhone(event.target.value);
+              }}
               type="text"
               className="form-control"
               id="exampleInputPhone"
-              value={detail.phone}
+              value={phone}
               name="phone"
               required
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="exampleInputAddress" className="form-label">
-              Address
-            </label>
             <input
-              onChange={handleChanges}
+            placeholder="Address"
+              onChange={(event) => {
+                setAddress(event.target.value);
+              }}
               type="text"
               className="form-control"
               id="exampleInputAddress"
-              value={detail.address}
+              value={address}
               name="address"
               required
             />
           </div>
           <button type="submit" className="btn btn-primary">
-            Submit
+            Register 
           </button>
         </form>
       </div>
