@@ -23,9 +23,7 @@ export const Register = () => {
       );
       if (res && res.data.success) {
         navigate("/login");
-        setTimeout(() => {
-          toast.success(res.data.message);
-        }, 2000);
+        toast.success(res.data.message);
       } else {
         toast.error(res.data.message);
       }
