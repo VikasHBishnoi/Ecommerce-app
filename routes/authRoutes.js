@@ -28,5 +28,11 @@ routers.post('/login', loginController);
 //Test routes to test this just used token genrated in header and key as autherization in postman
 routers.get('/test', requireSignIn, isAdmin,testController);
 
+// Protected Routes Auth
+routers.get('/user-auth',requireSignIn,(req,res)=>{
+    console.log("user-auth checking");
+    res.status(200).send({ok:true});
+});
+
 
 export default routers;
