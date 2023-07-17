@@ -11,6 +11,7 @@ export const Register = () => {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  const [answer, setAnswer] = useState("");
   const navigate = useNavigate();
 
   // form Function
@@ -19,7 +20,7 @@ export const Register = () => {
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_API}/api/v1/auth/register`,
-        { name, email, password, phone, address }
+        { name, email, password, phone, address,answer}
       );
       if (res && res.data.success) {
         navigate("/login");
@@ -111,6 +112,20 @@ export const Register = () => {
               className="form-control"
               id="exampleInputAddress"
               value={address}
+              name="address"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <input
+            placeholder="What is Your Best Friend Name"
+              onChange={(event) => {
+                setAnswer(event.target.value);
+              }}
+              type="text"
+              className="form-control"
+              id="exampleAnswer"
+              value={answer}
               name="address"
               required
             />

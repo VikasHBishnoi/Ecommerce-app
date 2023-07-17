@@ -1,5 +1,5 @@
 import express from "express";
-import { loginController, registerController, testController } from "../controllers/authController.js";
+import { loginController, registerController, testController,forgotPasswordController } from "../controllers/authController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 // routers object
 const routers = express.Router();
@@ -24,6 +24,9 @@ routers.post('/register', registerController);
 //     "password":"test@password"
 // }
 routers.post('/login', loginController);
+
+// Forget Password
+routers.post('/forget-password',forgotPasswordController)
 
 //Test routes to test this just used token genrated in header and key as autherization in postman
 routers.get('/test', requireSignIn, isAdmin,testController);
