@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-const Sppiner = () => {
+const Sppiner = ({ link="login" }) => {
   const [count, setCount] = useState(3);
   const navigate = useNavigate();
   const location = useLocation();
@@ -9,11 +9,11 @@ const Sppiner = () => {
       setCount((preValue) => --preValue);
     }, 1000);
     count === 0 &&
-      navigate("/login", {
+      navigate(`/${link}`, {
         state: location.pathname,
       });
     return () => clearInterval(interval);
-  }, [count, navigate,location]);
+  }, [count, navigate, location,link]);
   return (
     <>
       <div>

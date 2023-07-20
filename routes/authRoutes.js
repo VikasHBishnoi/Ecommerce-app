@@ -1,5 +1,10 @@
 import express from "express";
-import { loginController, registerController, testController,forgotPasswordController } from "../controllers/authController.js";
+import {
+  loginController,
+  registerController,
+  testController,
+  forgotPasswordController,
+} from "../controllers/authController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 // routers object
 const routers = express.Router();
@@ -16,26 +21,35 @@ const routers = express.Router();
 //     "address": "Jodhpur",
 //     "role": 0
 // }
-routers.post('/register', registerController);
+routers.post("/register", registerController);
 
 // To test login use below in postman
 // {
 //     "email":"test@mail.com",
 //     "password":"test@password"
 // }
-routers.post('/login', loginController);
+routers.post("/login", loginController);
 
 // Forget Password
-routers.post('/forget-password',forgotPasswordController)
+routers.post("/forget-password", forgotPasswordController);
 
 //Test routes to test this just used token genrated in header and key as autherization in postman
-routers.get('/test', requireSignIn, isAdmin,testController);
+routers.get("/test", requireSignIn, isAdmin, testController);
 
 // Protected Routes Auth
-routers.get('/user-auth',requireSignIn,(req,res)=>{
-    console.log("user-auth checking");
-    res.status(200).send({ok:true});
+routers.get("/user-auth", requireSignIn, (req, res) => {
+  console.log("user-auth checking");
+  res.status(200).send({ ok: true, message: "User auth done" });
 });
 
+// Protected Routes Admin Auth
+// const help = async (req, res) => {
+//   console.log("admin-auth checking");
+//   res.status(200).send({ ok: true, message: "Admin auth done" });
+// };
+routers.get("/admin-auth",requireSignIn, isAdmin, (req, res) => {
+  console.log("admin-auth checking");
+  res.status(200).send({ ok: true, message: "Admin auth done" });
+});
 
 export default routers;
