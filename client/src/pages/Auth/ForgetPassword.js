@@ -16,7 +16,7 @@ const ForgetPassword = () => {
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_API}/api/v1/auth/forget-password`,
-        { email, answer,newPassword }
+        { email, answer, newPassword }
       );
       console.log(res);
       if (res && res.data.success) {

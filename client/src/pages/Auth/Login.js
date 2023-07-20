@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import Layout from "../../components/Layout/Layout";
 import { toast } from "react-hot-toast";
-import { useNavigate ,useLocation} from "react-router-dom";
-import {useAuth} from '../../context/auth'
+import { useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../../context/auth";
 
 import axios from "axios";
 const Login = () => {
   const [email, setEamil] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const [auth,setAuth]=useAuth();
-  const location=useLocation();
+  const [auth, setAuth] = useAuth();
+  const location = useLocation();
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -24,10 +24,10 @@ const Login = () => {
         toast.success(res.data.message);
         setAuth({
           ...auth,
-          user:res.data.user,
-          token:res.data.token
+          user: res.data.user,
+          token: res.data.token,
         });
-        localStorage.setItem("auth",JSON.stringify(res.data));
+        localStorage.setItem("auth", JSON.stringify(res.data));
         navigate(location.state || "/");
       } else {
         toast.error(res.data.message);
@@ -75,7 +75,13 @@ const Login = () => {
             Login
           </button>
 
-          <button type="button" className="btn btn-primary" onClick={()=>{navigate("/forget-password")}}>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => {
+              navigate("/forget-password");
+            }}
+          >
             Forget Password
           </button>
         </form>

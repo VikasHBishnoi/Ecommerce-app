@@ -6,7 +6,7 @@ export const registerController = async (req, res) => {
   // console.log("Hello yes trying to register");
   try {
     console.log(req.body);
-    const { name, email, password, phone, address, role,answer } = req.body;
+    const { name, email, password, phone, address, role, answer } = req.body;
     // console.log(name);
     // Validation
     if (!name) {
@@ -28,7 +28,6 @@ export const registerController = async (req, res) => {
       return res.send({ message: "answer is Required" });
     }
 
-
     // Existing user
     const existingUser = await userModel.findOne({ email });
     if (existingUser) {
@@ -48,7 +47,7 @@ export const registerController = async (req, res) => {
       address,
       password: hashedPassword,
       role,
-      answer
+      answer,
     }).save();
 
     res.status(201).send({
@@ -101,13 +100,13 @@ export const loginController = async (req, res) => {
     res.status(200).send({
       success: "True",
       message: "Sucessful login",
-      user:{
-        _id:user._id,
-        name:user.name,
-        email:user.email,
-        phone:user.phone,
-        address:user.address,
-        role:user.role
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+        address: user.address,
+        role: user.role,
       },
       token,
     });
@@ -149,9 +148,9 @@ export const forgotPasswordController = async (req, res) => {
     const hashed = await hashPassword(newPassword);
     await userModel.findOneAndUpdate(user._id, { password: hashed });
     res.status(200).send({
-      success:true,
-      message:"Succesfully Changed Password"
-    })
+      success: true,
+      message: "Succesfully Changed Password",
+    });
   } catch (error) {
     console.log(error);
     res.status(500).send({

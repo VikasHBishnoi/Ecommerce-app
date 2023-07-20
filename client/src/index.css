@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400&display=swap");
 @import url("./style/authStyles.css");
+
 /* font-family: 'Poppins', sans-serif; */
 /* font-family: 'Playfair Display', serif; */
 * {
@@ -43,6 +44,10 @@
   font-weight: 700;
   font-family: "roboto", sans-serif;
   letter-spacing: 2px;
+}
+
+.dropdown {
+  border: 0px;
 }
 
 /* ================================================================
@@ -100,27 +105,30 @@ a:hover {
 /* ========================================= */
 /* =========contact us ========= */
 .contactus {
-    margin: 0;
-    padding: 0;
-    height: 70vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  margin: 0;
+  padding: 0;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-#contact-title{
-    border-radius: 50px;
-    margin-left: 30px;
-    width: 25rem;
+
+#contact-title {
+  border-radius: 50px;
+  margin-left: 30px;
+  width: 25rem;
 }
 
 /* ========================================= */
 /* ================Policy ================== */
-.privacyBlock{
-  padding:10px 45px;
+.privacyBlock {
+  padding: 10px 45px;
   font-size: 15px;
   font-weight: 700;
   font-family: "roboto", sans-serif;
 }
-.privacyBlock>h1, .privacyBlock>h3{
+
+.privacyBlock>h1,
+.privacyBlock>h3 {
   color: rgb(250, 8, 41);
 }

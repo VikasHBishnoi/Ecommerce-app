@@ -20,7 +20,7 @@ export const Register = () => {
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_API}/api/v1/auth/register`,
-        { name, email, password, phone, address,answer}
+        { name, email, password, phone, address, answer }
       );
       if (res && res.data.success) {
         navigate("/login");
@@ -90,7 +90,7 @@ export const Register = () => {
           </div>
           <div className="mb-3">
             <input
-            placeholder="Phone"
+              placeholder="Phone"
               onChange={(event) => {
                 setPhone(event.target.value);
               }}
@@ -104,7 +104,7 @@ export const Register = () => {
           </div>
           <div className="mb-3">
             <input
-            placeholder="Address"
+              placeholder="Address"
               onChange={(event) => {
                 setAddress(event.target.value);
               }}
@@ -118,7 +118,7 @@ export const Register = () => {
           </div>
           <div className="mb-3">
             <input
-            placeholder="What is Your Best Friend Name"
+              placeholder="What is Your Best Friend Name"
               onChange={(event) => {
                 setAnswer(event.target.value);
               }}
@@ -131,7 +131,7 @@ export const Register = () => {
             />
           </div>
           <button type="submit" className="btn btn-primary">
-            Register 
+            Register
           </button>
         </form>
       </div>
