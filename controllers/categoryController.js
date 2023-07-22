@@ -15,7 +15,7 @@ export const createCategoryController = async (req, res) => {
     const existingCatregory = await categoryModel.findOne({ name });
     if (existingCatregory) {
       return res.status(200).send({
-        succes: true,
+        success: true,
         message: "Already a category",
       });
     }
@@ -25,14 +25,14 @@ export const createCategoryController = async (req, res) => {
       slug: slugify(name),
     }).save();
     res.status(200).send({
-      succes: true,
-      message: "Succesfull Created new Categroy",
+      success: true,
+      message: "successfull Created new Categroy",
       category,
     });
   } catch (error) {
     console.log(error);
     res.status(500).send({
-      succes: false,
+      success: false,
       error,
       message: "Error in Category Controller",
     });
@@ -50,14 +50,14 @@ export const updateCategoryController = async (req, res) => {
       { new: true }
     );
     res.status(200).send({
-      succes: true,
-      message: "Category Updated Succesfully",
+      success: true,
+      message: "Category Updated successfully",
       category,
     });
   } catch (error) {
     console.log(error);
     res.status(500).send({
-      succes: false,
+      success: false,
       error,
       message: "Error in updating Category",
     });
@@ -69,14 +69,14 @@ export const categoryContoller = async (req, res) => {
   try {
     const category = await categoryModel.find({});
     res.status(200).send({
-      succes: true,
+      success: true,
       message: "All category List",
       category,
     });
   } catch (error) {
     console.log(error);
     res.status(500).send({
-      succes: false,
+      success: false,
       message: "Error in geting all category list",
       error,
     });
@@ -89,20 +89,20 @@ export const singleCategoryController = async(req,res) => {
     const category = await categoryModel.findOne({slug:req.params.slug});
     if(!category){
       return res.status(400).send({
-        succes:false,
+        success:false,
         message:"Invalid request slug is not present"
       })
     }
     res.status(200).send({
-      succes:true,
-      message:"Succesfull get category",
+      success:true,
+      message:"successfull get category",
       category
     })
   }
   catch(error){
     console.log(error);
     res.status(500).send({
-      succes:false,
+      success:false,
       message:"Error in giting this category",
       error
     })
@@ -117,14 +117,14 @@ export const deleteCategoryController=async (req,res)=>{
     // console.log(element+" For testing"+id);
     // Here we can improve there is someone exist then only delete
     res.status(200).send({
-      succes:true,
-      message:"Succefully delete category if present",
+      success:true,
+      message:"successFull delete category if present",
     })
   }
   catch(error){
     console.log(error);
     res.status(500).send({
-      succes:false,
+      success:false,
       message:"Error in delte the category",
       error
     })
