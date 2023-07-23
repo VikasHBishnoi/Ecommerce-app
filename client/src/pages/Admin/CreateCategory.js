@@ -81,9 +81,9 @@ const CreateCategory = () => {
       );
       console.log("hello");
       console.log(data);
-      if (data.success) {
-        setCategories(data.category);
-        console.log(data.category);
+      if (data?.success) {
+        setCategories(data?.category);
+        console.log(data?.category);
       }
     } catch (error) {
       console.log(error);

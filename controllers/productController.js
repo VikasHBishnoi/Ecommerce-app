@@ -29,7 +29,7 @@ export const createProductController = async (req, res) => {
         return res.status(500).send({
           error: "Quantity is Required",
         });
-      case photo && photo.size > 102400:
+      case photo && photo.size > 1000000:
         return res.status(500).send({
           error: "Phot is required and should be less than 1MB",
         });
