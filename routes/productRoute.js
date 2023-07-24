@@ -37,7 +37,7 @@ router.get("/get-product/:slug", getSingleProductController);
 router.get("/product-photo/:pid", productPhotoController);
 // delete product
 router.delete(
-  "/product/:pid",
+  "/delete-product/:pid",
   requireSignIn,
   isAdmin,
   formidable(),

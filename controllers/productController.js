@@ -68,7 +68,7 @@ export const getProductController = async (req, res) => {
       .limit(12)
       .sort({ createdAt: -1 });
     res.status(200).send({
-      succes: true,
+      success: true,
       message: "First 12 product are here",
       products,
     });
@@ -142,13 +142,13 @@ export const deleteProductController = async (req, res) => {
   try {
     await productModel.findByIdAndDelete(req.params.pid);
     res.status(200).send({
-      succes: true,
+      success: true,
       message: "successfuly deleted",
     });
   } catch (error) {
     console.log(error);
     res.status(500).send({
-      succes: false,
+      success: false,
       message: "Error while deleting product",
       error,
     });
@@ -189,7 +189,8 @@ export const updateProductController = async (req, res) => {
           error: "Photo is required and should be less than 1MB",
         });
     }
-    // console.log(req.params.pid);
+    console.log(req.params.pid);
+    console.log(photo);
     const products = await productModel.findByIdAndUpdate(
       req.params.pid,
       {

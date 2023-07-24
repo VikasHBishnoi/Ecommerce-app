@@ -132,3 +132,14 @@ a:hover {
 .privacyBlock>h3 {
   color: rgb(250, 8, 41);
 }
+
+
+/* ========================================= */
+/* ================Product ================== */
+.product-link{
+  text-decoration: none !important;
+  color: black !important;
+}
+.product-link:hover{
+  border: 0px;
+}
