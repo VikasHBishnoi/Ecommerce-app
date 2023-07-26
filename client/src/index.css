@@ -143,3 +143,15 @@ a:hover {
 .product-link:hover{
   border: 0px;
 }
+.cat-btn {
+  padding: 40px 0px;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+.cat-btn:hover {
+  background-color: #434343;
+  color: white;
+}
+.spclbtn{
+  display: inline;
+}

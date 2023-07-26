@@ -24,10 +24,10 @@ app.use(morgan("dev"));
 app.use("/api/v1/auth/", authRoutes);
 app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/product", productRoutes);
-// Api
-app.get("/", (req, res) => {
-  res.send("<h1>Hello</h1>");
-});
+// // Api For Intial Testing Setup
+// app.get("/", (req, res) => {
+//   res.send("<h1>Hello</h1>");
+// });
 
 // PORT
 const PORT = process.env.PORT || 8080;

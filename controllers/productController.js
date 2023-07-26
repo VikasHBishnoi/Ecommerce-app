@@ -218,3 +218,91 @@ export const updateProductController = async (req, res) => {
     });
   }
 };
+
+export const productFilterController = async (req, res) => {
+  try {
+    const { checked, radio } = req.body;
+    let args = {};
+    if (checked.length > 0) {
+      console.log("Doing for cat");
+      args.category = checked;
+    }
+    // console.log(checked.length);
+    // console.log(checked.length>0);
+    if (radio.length > 0) {
+      console.log("Adding price");
+      args.price = { $gte: radio[0], $lte: radio[1] };
+    }
+    const products = await productModel.find(args);
+    console.log("Filtering Products");
+    // if(radio.length>0){
+    //   console.log("E");
+    //   products.filter((pro) => {
+    //     console.log(pro.price >= radio.price[0] && pro.price <= radio.price[1]);
+    //     return pro.price >= radio.price[0] && pro.price <= radio.price[1];
+    //   });
+    // }
+    products.map((pro) => {
+      console.log(
+        pro.name + " " + pro.price + " OR Pric " + radio[0] + " " + radio[1]
+      );
+    });
+    res.status(200).send({
+      success: true,
+      message: "Successfully get Filtered Product",
+      products,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error While Filtering Product",
+      error,
+    });
+  }
+};
+
+// Product Count
+export const productCountController = async (req, res) => {
+  try {
+    const total = await productModel.find({}).estimatedDocumentCount();
+    res.status(200).send({
+      succes: true,
+      total,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error in Product Count Controller",
+      error,
+    });
+  }
+};
+
+//Product list base on page
+export const productListController = async (req, res) => {
+  try {
+    const perPage = 4;
+    const page = req.params.page ? req.params.page : 1;
+    const products = await productModel
+      .find({})
+      .select("-photo")
+      .skip((page - 1) * perPage)
+      .limit(perPage)
+      .sort({ createdAt: -1 });
+
+    res.status(200).send({
+      succes:true,
+      message:"Succesfull geting page list Controler ",
+      products
+    })
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error in Product List Controller",
+      error,
+    });
+  }
+};
