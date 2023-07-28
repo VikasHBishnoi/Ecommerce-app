@@ -1,6 +1,7 @@
 import slugify from "slugify";
 import productModel from "../models/productModel.js";
 import fs from "fs";
+import { Console } from "console";
 export const createProductController = async (req, res) => {
   try {
     const { name, description, price, category, quantity, shipping } =
@@ -95,13 +96,13 @@ export const getSingleProductController = async (req, res) => {
     // Need to update if we get nothing then what to show
     // if (!product) {
     //   return res.send(500).send({
-    //     succes: false,
+    //     success: false,
     //     message: "No such product exist",
     //   });
     // }
     res.status(200).send({
-      succes: true,
-      message: "Succesfully get product",
+      success: true,
+      message: "Successfully get product",
       product,
     });
   } catch (error) {
@@ -124,14 +125,14 @@ export const productPhotoController = async (req, res) => {
       return res.status(200).send(product.photo.data);
     }
     // res.status(200).send({
-    //   succes: true,
-    //   message: "Succesfuly get image of products",
+    //   success: true,
+    //   message: "Successfuly get image of products",
     //   Product,
     // });
   } catch (error) {
     console.log(error);
     res.status(500).send({
-      succes: false,
+      success: false,
       message: "Error in geting photo from controller",
       error,
     });
@@ -267,7 +268,7 @@ export const productCountController = async (req, res) => {
   try {
     const total = await productModel.find({}).estimatedDocumentCount();
     res.status(200).send({
-      succes: true,
+      success: true,
       total,
     });
   } catch (error) {
@@ -293,16 +294,64 @@ export const productListController = async (req, res) => {
       .sort({ createdAt: -1 });
 
     res.status(200).send({
-      succes:true,
-      message:"Succesfull geting page list Controler ",
-      products
-    })
+      success: true,
+      message: "Successfull geting page list Controler ",
+      products,
+    });
   } catch (error) {
     console.log(error);
     res.status(400).send({
       success: false,
       message: "Error in Product List Controller",
       error,
+    });
+  }
+};
+
+// Search Product
+export const searchProductController = async (req, res) => {
+  try {
+    const { keyword } = req.params;
+    const results = await productModel
+      .find({
+        $or: [
+          { name: { $regex: keyword, $options: "i" } },
+          { description: { $regex: keyword, $options: "i" } },
+        ],
+      })
+      .select("-photo");
+    res.json(results);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error in Search APi",
+      error,
+    });
+  }
+};
+
+// Simlair Products
+export const relatedProductController = async (req, res) => {
+  try {
+    const { pid, cid } = req.params;
+    const products = await productModel
+      .find({
+        category: cid,
+        _id: { $ne: pid },
+      })
+      .select("-photo")
+      .limit(3)
+      .populate("category");
+    res.status(200).send({
+      success: true,
+      message: "Successfully done related products",
+      products,
+    });
+  } catch (error) {
+    Console.log(error);
+    res.status(400).send({
+      success: false,
     });
   }
 };

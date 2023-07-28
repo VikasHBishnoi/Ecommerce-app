@@ -47,7 +47,7 @@ const Product = () => {
                     <img
                       src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${product._id}`}
                       className="card-img-top"
-                      alt="..."
+                      alt={product.name}
                     />
                     <div className="card-body">
                       <h5 className="card-title">{product.name}</h5>

@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { BiSolidShoppingBag } from "react-icons/bi";
 import { useAuth } from "../../context/auth";
+import SearchInput from "../Form/SearchInput";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
@@ -108,6 +109,9 @@ const Header = () => {
                 <NavLink to="/cart" className="nav-link" href="#">
                   Cart(0)
                 </NavLink>
+              </li>
+              <li className="nav-item">
+              <SearchInput />
               </li>
             </ul>
             {/* <form className="d-flex" role="search">
