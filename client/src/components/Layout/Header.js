@@ -42,15 +42,20 @@ const Header = () => {
                 </NavLink>
               </li>
               <li className="nav-item">
+                <NavLink to="/cart" className="nav-link" href="#">
+                  Cart(0)
+                </NavLink>
+              </li>
+              {/* <li className="nav-item">
                 <NavLink to="/category" className="nav-link" href="#">
                   Category
                 </NavLink>
-              </li>
+              </li> */}
               {auth.user ? (
                 <>
-                  <li className="nav-item dropdown">
+                  <li className="nav-item dropdown ">
                     <NavLink
-                      className="nav-link dropdown-toggle"
+                      className="nav-link dropdown-toggle nodeco"
                       href="#"
                       role="button"
                       data-bs-toggle="dropdown"
@@ -105,11 +110,6 @@ const Header = () => {
                   Login
                 </NavLink>
               </li> */}
-              <li className="nav-item">
-                <NavLink to="/cart" className="nav-link" href="#">
-                  Cart(0)
-                </NavLink>
-              </li>
               <li className="nav-item">
               <SearchInput />
               </li>

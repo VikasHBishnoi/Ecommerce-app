@@ -155,3 +155,7 @@ a:hover {
 .spclbtn{
   display: inline;
 }
+
+.nodeco{
+  border: none;
+}
