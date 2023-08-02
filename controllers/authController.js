@@ -161,6 +161,50 @@ export const forgotPasswordController = async (req, res) => {
   }
 };
 
+// Update Controller
+export const updateProfileController = async (req, res) => {
+  try {
+    const { name, email, password, address, phone } = req.body;
+
+    const user = await userModel.findById(req.user._id);
+
+    // If Password not sent
+    if (password && password.length < 2) {
+      return res.json({
+        error: "Password is Required and minimum 3 character",
+      });
+    }
+    console.log(name + " " + email + " " + password + " " + address + " " + phone);
+    let hashPass = user.password;
+    if (password) {
+      hashPass = await hashPassword(password);
+    }
+    console.log(name + " " + email + " " + hashPass + " " + address + " " + phone);
+    const updatedUser = await userModel.findByIdAndUpdate(
+      req.user._id,
+      {
+        name: name || user.name,
+        email: email || user.email,
+        phone: phone || user.phone,
+        password: hashPass,
+        address: address || user.address,
+      },
+      { new: true }
+    );
+
+    res.status(200).send({
+      success: true,
+      message: "Successfully Updated the User Profile",
+      updatedUser
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error in Updating Profile",
+    });
+  }
+};
 // Test Controller
 export const testController = (req, res) => {
   res.send("protected routes");
