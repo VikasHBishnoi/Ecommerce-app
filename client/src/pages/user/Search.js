@@ -10,7 +10,7 @@ const Search = () => {
           {/* <h1 className='mt-4'>Search Results</h1> */}
           {/* <pre>{JSON.stringify(values, null, 4)}</pre>
           <h6>{values?.results.length}</h6> */}
-        {values?.results.length>0?<h1 className='mt-4'>Search Results</h1>:<h1 className='mt-4'>No Result Found</h1>}
+          {values?.results.length > 0 ? <h1 className='mt-4'>Search Results</h1> : <h1 className='mt-4'>No Result Found</h1>}
           <div className="d-flex flex-wrap mt-4">
             {values?.results?.map((product) => {
               return (

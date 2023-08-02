@@ -64,37 +64,37 @@ const ProductDetails = () => {
           </button>
         </div>
       </div>
-      <hr/>
+      <hr />
       <div className="row ms-3 container">
         <h6> Similar Products </h6>
-        {relatedProduct.length<1 &&<p className="text-center">No Similar Product Found</p>}
+        {relatedProduct.length < 1 && <p className="text-center">No Similar Product Found</p>}
         <div className="d-flex flex-wrap">
-            {relatedProduct?.map((pro) => {
-              return (
-                <div
-                  className="card m-2"
-                  style={{ width: "16.5rem" }}
-                  key={pro._id}
-                >
-                  <img
-                    src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${pro._id}`}
-                    className="card-img-top"
-                    alt={pro.name}
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">{pro.name}</h5>
-                    <p className="card-text">
-                      {pro.description.substring(0, 50)}...
-                    </p>
-                    <p className="card-text">₹ {pro.price}</p>
-                    <button className="btn btn-secondary ms-1 spclbtn">
-                      ADD To CART{" "}
-                    </button>
-                  </div>
+          {relatedProduct?.map((pro) => {
+            return (
+              <div
+                className="card m-2"
+                style={{ width: "16.5rem" }}
+                key={pro._id}
+              >
+                <img
+                  src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${pro._id}`}
+                  className="card-img-top"
+                  alt={pro.name}
+                />
+                <div className="card-body">
+                  <h5 className="card-title">{pro.name}</h5>
+                  <p className="card-text">
+                    {pro.description.substring(0, 50)}...
+                  </p>
+                  <p className="card-text">₹ {pro.price}</p>
+                  <button className="btn btn-secondary ms-1 spclbtn">
+                    ADD To CART{" "}
+                  </button>
                 </div>
-              );
-            })}
-          </div>
+              </div>
+            );
+          })}
+        </div>
         {/* <pre>{JSON.stringify(product.category, null, 4)}</pre> */}
       </div>
     </Layout>

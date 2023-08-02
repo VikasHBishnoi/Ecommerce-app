@@ -20,6 +20,7 @@ import Profile from "./pages/user/Profile";
 import UpdateProduct from "./pages/Admin/UpdateProduct";
 import Search from "./pages/user/Search";
 import ProductDetails from './pages/InformationPages/ProductDetails';
+import CartPage from "./pages/user/CartPage";
 function App() {
   return (
     <>
@@ -40,6 +41,7 @@ function App() {
           <Route path="admin/users" element={<Users />} />
           <Route path="admin/products" element={<Product />} />
         </Route>
+        <Route path='/cart' element={<CartPage />}></Route>
         <Route path="/forget-password" element={<ForgetPassword />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />

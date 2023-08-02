@@ -16,10 +16,10 @@ const About = () => {
           <div className="text-justify">
             <h1>Welcome to Our Ecommerce App!  </h1>
             <p>At Our Ecommerce App, we believe in
-            bringing convenience and joy to your online shopping experience.
-            With a vast selection of products, seamless navigation, and
-            excellent customer service, we strive to be your go-to destination
-            for all your shopping needs.</p>
+              bringing convenience and joy to your online shopping experience.
+              With a vast selection of products, seamless navigation, and
+              excellent customer service, we strive to be your go-to destination
+              for all your shopping needs.</p>
           </div>
         </div>
       </div>

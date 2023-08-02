@@ -62,6 +62,6 @@ router.get("/product-list/:page", productListController);
 router.get("/search/:keyword", searchProductController);
 
 // Similar Porduct
-router.get('/related-product/:pid/:cid',relatedProductController);
+router.get('/related-product/:pid/:cid', relatedProductController);
 
 export default router;

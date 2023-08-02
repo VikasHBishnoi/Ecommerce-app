@@ -5,11 +5,11 @@ import axios from "axios";
 import Sppiner from "../Sppiner";
 export default function PrivateRoute() {
   const [ok, setOk] = useState(false);
-  const [auth, setAuth] = useAuth();
+  const [auth] = useAuth();
 
   useEffect(() => {
     const authCheck = async () => {
-      const res = await axios.get(`${process.env.REACT_APP_API}/api/v1/auth/user-auth`,{
+      const res = await axios.get(`${process.env.REACT_APP_API}/api/v1/auth/user-auth`, {
         headers: {
           authorization: auth?.token,
         },
@@ -25,5 +25,5 @@ export default function PrivateRoute() {
       authCheck();
     }
   }, [auth?.token]);
-  return ok ? <Outlet/> : <Sppiner link="login"/>;
+  return ok ? <Outlet /> : <Sppiner link="login" />;
 }

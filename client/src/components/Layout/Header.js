@@ -3,9 +3,12 @@ import { NavLink, Link } from "react-router-dom";
 import { BiSolidShoppingBag } from "react-icons/bi";
 import { useAuth } from "../../context/auth";
 import SearchInput from "../Form/SearchInput";
+import { useCart } from '../../context/cart';
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
+  const [cart] = useCart();
+
   const handleLogout = () => {
     localStorage.removeItem("auth");
     setAuth({
@@ -43,7 +46,7 @@ const Header = () => {
               </li>
               <li className="nav-item">
                 <NavLink to="/cart" className="nav-link" href="#">
-                  Cart(0)
+                  Cart({cart?.length})
                 </NavLink>
               </li>
               {/* <li className="nav-item">
@@ -66,9 +69,8 @@ const Header = () => {
                     <ul className="dropdown-menu">
                       <li>
                         <NavLink
-                          to={`/dashboard/${
-                            auth?.user?.role === 1 ? "admin" : "user"
-                          }`}
+                          to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"
+                            }`}
                           className="nav-link"
                         >
                           dashboard
@@ -111,7 +113,7 @@ const Header = () => {
                 </NavLink>
               </li> */}
               <li className="nav-item">
-              <SearchInput />
+                <SearchInput />
               </li>
             </ul>
             {/* <form className="d-flex" role="search">

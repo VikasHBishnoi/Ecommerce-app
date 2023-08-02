@@ -47,7 +47,7 @@ routers.get("/user-auth", requireSignIn, (req, res) => {
 //   console.log("admin-auth checking");
 //   res.status(200).send({ ok: true, message: "Admin auth done" });
 // };
-routers.get("/admin-auth",requireSignIn, isAdmin, (req, res) => {
+routers.get("/admin-auth", requireSignIn, isAdmin, (req, res) => {
   console.log("admin-auth checking");
   res.status(200).send({ ok: true, message: "Admin auth done" });
 });

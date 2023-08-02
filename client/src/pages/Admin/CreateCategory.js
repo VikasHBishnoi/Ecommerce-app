@@ -35,40 +35,40 @@ const CreateCategory = () => {
   };
 
   // Updating Category
-  const handleUpdateSubmit=async(e)=>{
+  const handleUpdateSubmit = async (e) => {
     e.preventDefault();
-    try{
-      const {data}=await axios.put(`${process.env.REACT_APP_API}/api/v1/category/update-category/${selected._id}`,{name:updatedName});
-      if(data?.success){
+    try {
+      const { data } = await axios.put(`${process.env.REACT_APP_API}/api/v1/category/update-category/${selected._id}`, { name: updatedName });
+      if (data?.success) {
         toast.success(`Succesfully Updated name to ${updatedName}`);
         setSelected(null);
         setUpdatedName("");
         setVisible(false);
         getAllCategory();
       }
-      else{
+      else {
         toast.error("Backend dos't given value in updating catgeory");
       }
     }
-    catch(error){
+    catch (error) {
       console.log(error);
       toast.error("Error in updating handle");
     }
   }
 
   // Delete Category
-  const handleDelete=async(pId)=>{
-    try{
-      const {data}=await axios.delete(`${process.env.REACT_APP_API}/api/v1/category/delete-category/${pId}`);
-      if(data?.success){
+  const handleDelete = async (pId) => {
+    try {
+      const { data } = await axios.delete(`${process.env.REACT_APP_API}/api/v1/category/delete-category/${pId}`);
+      if (data?.success) {
         toast.success(`Succesfully Deleted the`);
         getAllCategory();
       }
-      else{
+      else {
         toast.error("Backend dos't given delte the particular category");
       }
     }
-    catch(error){
+    catch (error) {
       console.log(error);
       toast.error("Error in Delete handle");
     }
@@ -138,7 +138,7 @@ const CreateCategory = () => {
                           </button>
                         </td>
                         <td>
-                          <button className="btn btn-danger m-1" onClick={()=>{
+                          <button className="btn btn-danger m-1" onClick={() => {
                             handleDelete(c._id)
                           }}>Delete</button>
                         </td>

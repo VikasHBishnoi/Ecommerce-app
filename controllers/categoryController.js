@@ -84,48 +84,48 @@ export const categoryContoller = async (req, res) => {
 };
 
 // Single Cateogry Controller
-export const singleCategoryController = async(req,res) => {
-  try{
-    const category = await categoryModel.findOne({slug:req.params.slug});
-    if(!category){
+export const singleCategoryController = async (req, res) => {
+  try {
+    const category = await categoryModel.findOne({ slug: req.params.slug });
+    if (!category) {
       return res.status(400).send({
-        success:false,
-        message:"Invalid request slug is not present"
+        success: false,
+        message: "Invalid request slug is not present"
       })
     }
     res.status(200).send({
-      success:true,
-      message:"successfull get category",
+      success: true,
+      message: "successfull get category",
       category
     })
   }
-  catch(error){
+  catch (error) {
     console.log(error);
     res.status(500).send({
-      success:false,
-      message:"Error in giting this category",
+      success: false,
+      message: "Error in giting this category",
       error
     })
   }
 };
 
 // Delete category
-export const deleteCategoryController=async (req,res)=>{
-  try{
-    const {id}=req.params;
-    const element=await categoryModel.findByIdAndDelete(id);
+export const deleteCategoryController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const element = await categoryModel.findByIdAndDelete(id);
     // console.log(element+" For testing"+id);
     // Here we can improve there is someone exist then only delete
     res.status(200).send({
-      success:true,
-      message:"successFull delete category if present",
+      success: true,
+      message: "successFull delete category if present",
     })
   }
-  catch(error){
+  catch (error) {
     console.log(error);
     res.status(500).send({
-      success:false,
-      message:"Error in delte the category",
+      success: false,
+      message: "Error in delte the category",
       error
     })
   }

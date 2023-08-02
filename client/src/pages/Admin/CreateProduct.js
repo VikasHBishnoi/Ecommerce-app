@@ -7,7 +7,7 @@ import { Select } from "antd";
 import { useNavigate } from "react-router-dom";
 const { Option } = Select;
 const CreateProduct = () => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -37,28 +37,28 @@ const CreateProduct = () => {
   }, []);
 
   // Create Product Function
-  const handleCreate=async(event)=>{
+  const handleCreate = async (event) => {
     event.preventDefault();
-    try{
-      const productData=new FormData();
-      productData.append('name',name);
-      productData.append('description',description);
-      productData.append('price',price);
-      productData.append('category',category);
-      productData.append('quantity',quantity);
-      productData.append('shipping',shipping);
-      productData.append('photo',photo);
-      const {data}=await axios.post(`${process.env.REACT_APP_API}/api/v1/product/create-product`,productData);
-      if(data?.success){
+    try {
+      const productData = new FormData();
+      productData.append('name', name);
+      productData.append('description', description);
+      productData.append('price', price);
+      productData.append('category', category);
+      productData.append('quantity', quantity);
+      productData.append('shipping', shipping);
+      productData.append('photo', photo);
+      const { data } = await axios.post(`${process.env.REACT_APP_API}/api/v1/product/create-product`, productData);
+      if (data?.success) {
         toast.success("Successfully Created the Product");
       }
-      else{
+      else {
         console.log(data);
         toast.error("Error in sending data to create new product");
       }
       navigate('/dashboard/admin/products');
     }
-    catch(error){
+    catch (error) {
       console.log(error);
       toast.error("Error in Creating Product");
     }
@@ -160,14 +160,14 @@ const CreateProduct = () => {
               </div>
               <div className="mb-3">
                 <Select
-                bordered={false}
-                placeholder='Select Shipping'
-                size="large"
-                showSearch
-                className="form-select mb-3"
-                onChange={(value)=>{
-                  setShipping(value)
-                }}
+                  bordered={false}
+                  placeholder='Select Shipping'
+                  size="large"
+                  showSearch
+                  className="form-select mb-3"
+                  onChange={(value) => {
+                    setShipping(value)
+                  }}
                 >
                   <Option value='0'>No</Option>
                   <Option value='1'>Yes</Option>

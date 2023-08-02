@@ -5,7 +5,7 @@ import axios from "axios";
 import Sppiner from "../Sppiner";
 export default function AdminRoute() {
   const [ok, setOk] = useState(false);
-  const [auth, setAuth] = useAuth();
+  const [auth] = useAuth();
 
   useEffect(() => {
     const authCheck = async () => {
