@@ -1,4 +1,6 @@
 import userModel from "../models/userModel.js";
+import orderModel from "../models/orderModel.js";
+import productModel from "../models/productModel.js";
 import { comparePassword, hashPassword } from "../helpers/authHelper.js";
 import JWT from "jsonwebtoken";
 
@@ -205,6 +207,26 @@ export const updateProfileController = async (req, res) => {
     });
   }
 };
+
+// Get Order 
+export const getOrdersController = async (req, res) => {
+  try {
+    console.log(req.user._id);
+    const orders = await orderModel.find({ buyer: req.user._id }).populate("products", "-photo").populate("buyer", "name");
+    // const orders = await orderModel.find({ buyer: req.user._id }).populate("products", "-photo").populate("buyer", "name");
+    res.json(orders);
+  }
+  catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error will geting order",
+      error
+    })
+  }
+}
+
+
 // Test Controller
 export const testController = (req, res) => {
   res.send("protected routes");

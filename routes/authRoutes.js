@@ -5,6 +5,7 @@ import {
   testController,
   forgotPasswordController,
   updateProfileController,
+  getOrdersController,
 } from "../controllers/authController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 // routers object
@@ -56,4 +57,6 @@ routers.get("/admin-auth", requireSignIn, isAdmin, (req, res) => {
 // Update Profile
 routers.put('/profile', requireSignIn, updateProfileController);
 
+// To Get Oder Detail of customer
+routers.get('/orders',requireSignIn,getOrdersController);
 export default routers;
