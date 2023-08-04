@@ -4,10 +4,16 @@ import { useCart } from "../../context/cart";
 import { useAuth } from "../../context/auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import DropIn from 'braintree-web-drop-in-react';
+import axios from "axios";
+
 const CartPage = () => {
   const [cart, setCart] = useCart();
   const [auth] = useAuth();
   const navigate = useNavigate();
+  const [clientToken, setClientToken] = useState("");
+  const [instance, setInstance] = useState("");
+  const [loading, setLoading] = useState(false);
   const [total, setTotal] = useState();
   // Total Price calculate
   const totalPriceCalculater = () => {
@@ -43,6 +49,42 @@ const CartPage = () => {
       console.log(error);
     }
   };
+
+  // get Payment Gateway Token
+  const getToken = async () => {
+    try {
+      const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/product/braintree/token`);
+      // console.log(data.response);
+      setClientToken(data?.response?.clientToken);
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+    getToken();
+  }, [auth?.token])
+
+  // Handle Payment
+  const handlePayment = async () => {
+    try {
+      setLoading(true);
+      // console.log("Handling Payment");
+      const { nonce } = await instance.requestPaymentMethod();
+      const { data } = await axios.post(`${process.env.REACT_APP_API}/api/v1/product/braintree/payment`, {
+        nonce,
+        cart,
+      });
+      setLoading(false);
+      localStorage.removeItem("cart");
+      setCart([]);
+      navigate("/dashboard/user/orders");
+      toast.success("Payment Completed Successfully ");
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  }
   return (
     <Layout>
       <div className="container">
@@ -53,9 +95,8 @@ const CartPage = () => {
             </h1>
             <h4>
               {cart?.length > 0
-                ? `You Have ${cart.length} items in your cart ${
-                    auth.token ? "" : " and Please login to checkout"
-                  }`
+                ? `You Have ${cart.length} items in your cart ${auth.token ? "" : " and Please login to checkout"
+                }`
                 : "Your Cart is empty"}
             </h4>
           </div>
@@ -117,10 +158,10 @@ const CartPage = () => {
                   <button
                     className="btn  spclbtn btn-outline-warning"
                     onClick={() => {
-                      navigate("/login",{
-                        state:"/cart"
+                      navigate("/login", {
+                        state: "/cart"
                       });
-                      
+
                     }}
                   >
                     Please Login to Procced Further
@@ -128,6 +169,29 @@ const CartPage = () => {
                 </div>
               </>
             )}
+            <div className='mt-2'>
+              {!clientToken || !auth?.token || !cart?.length ? (
+                ""
+              ) : (
+                <>
+                  <DropIn
+                    options={{
+                      authorization: clientToken,
+
+                    }}
+                    onInstance={(instance) => setInstance(instance)}
+                  />
+
+                  <button
+                    className="btn btn-primary spclbtn"
+                    onClick={handlePayment}
+                    disabled={loading || !instance || !auth?.user?.address}
+                  >
+                    {loading ? "Processing ...." : "Make Payment"}
+                  </button>
+                </>
+              )}
+            </div>
           </div>
         </div>
       </div>
