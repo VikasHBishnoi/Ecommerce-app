@@ -7,7 +7,7 @@ import JWT from "jsonwebtoken";
 export const registerController = async (req, res) => {
   // console.log("Hello yes trying to register");
   try {
-    console.log(req.body);
+    // console.log(req.body);
     const { name, email, password, phone, address, role, answer } = req.body;
     // console.log(name);
     // Validation
@@ -226,6 +226,41 @@ export const getOrdersController = async (req, res) => {
   }
 }
 
+
+// Get All Order 
+export const getAllOrdersController = async (req, res) => {
+  try {
+    console.log(req.user._id);
+    const orders = await orderModel.find().populate("products", "-photo").populate("buyer", "name").sort({ createdAt: "-1" });
+    res.json(orders);
+  }
+  catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error will geting order",
+      error
+    })
+  }
+}
+
+// Change Order Status
+export const orderStatusController=async(req,res)=>{
+  try{
+    const {orderId}=req.params;
+    const {status}=req.body;
+    const orders=await orderModel.findByIdAndUpdate(orderId,{status},{new:true});
+    res.json(orders);
+  }
+  catch(error){
+    console.log(error);
+    res.status(500).send({
+      success:false,
+      message:"Error while Updating Order",
+      error
+    })
+  }
+}
 
 // Test Controller
 export const testController = (req, res) => {
